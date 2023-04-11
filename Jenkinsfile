@@ -43,6 +43,7 @@ stage('deploy'){
     steps{
         script{
             gv.deployApp()
+            echo 'env is ${ENV}'
         }
     }
 }
