@@ -1,55 +1,30 @@
-def gv
 pipeline{
-agent {label 'agent2'}
-parameters{
-    choice(name:'Version' , choices:['1.0','1.1','1.2'], description: '')
-    booleanParam(name:'executeTest',defaultValue: true,description: '')
+agent {label 'docker'}
+tools{
+    maven 'maven.3.9.1'
 }
 stages{
-stage('init'){
+stage('build jar'){
     steps{
          script{
-           gv = load 'script.groovy'
+           echo 'building jar file ...'
+           sh 'mvn package'
         }
     }
 }
-stage('build'){
+stage('build image '){
     steps{
         script{
-            gv.buildApp()
+            echo ' building docker image .....'
+           withCredentials([usernamePassword(credentialId: 'dockerhub' , usernameVariable:'UESER' , passwordVariabe:'PASS' )]){
+             sh 'docker build . -t alaa0ali/mavnapp:1.2'
+             sh "echo$PASS|docker login -u $USER --password-stdin" 
+             echo'push image to dockerhub ....'
+             sh 'docker push alaa0ali/mavnapp:1.2'
+           } 
         }
     }
 }
-stage('test'){
-    when {
-        expression{
-            params.executeTest
-        }
-    }
-    steps{
-        script{
-            gv.testApp()
-             echo "server numder is ${env.ServerNum}"
-           
-        }
-    }
-}
-stage('deploy'){
-    input{
-    message "select environment to deploy the app"
-    ok "done"
-        parameters{
-        choice(name:"Env" , choices:["dev","staging","prod"], description: "")
-        }
-    }
-    steps{
-        script{
-            env.ServerNum= input message:"what is sever num ?" ,ok :"done" , parameters: [choice(name: "One" , choices:["1","2","3"] , description:'' )]
-            gv.deployApp()
-            echo "env is ${ENV}"
-            echo "server numder is ${ServerNum}"
-        }
-    }
-}
-}
-}
+
+
+}}
