@@ -23,7 +23,7 @@ stage('build'){
 stage('test'){
     when {
         expression{
-            param.execute-test-stage
+            params.execute-test-stage
         }
     }
     steps{
