@@ -34,13 +34,6 @@ stage('test'){
     }
 }
 stage('deploy'){
-    input{
-    message "select environment to deploy the app"
-    ok "Done"
-        parameters{
-        choice(name:'ENV', choices:['dev','staging','prod'],description:"")
-        }
-    }
     steps{
         script{
             env.ServerNum= message:"what is sever num ?" ,ok :"done" , parameters: [choice(name:"One",choices:["1","2","3"],description:"")]
