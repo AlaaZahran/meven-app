@@ -33,6 +33,13 @@ stage('test'){
     }
 }
 stage('deploy'){
+    input{
+    message "select environment to deploy the app"
+    ok "Done"
+        parameters{
+        choice(name:'ENV', choices:['dev','staging','prod'],description:"")
+        }
+    }
     steps{
         script{
             gv.deployApp()
