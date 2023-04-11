@@ -2,8 +2,8 @@ def gv
 pipeline{
 agent {label 'agent2'}
 paramaters{
-    choice(name:'Version' , choices:['1.0','1.1','1.2'], description '')
-    boolianparam(name:'execute-test-stage',defaultvalue: true,description '')
+    choice(name:'Version' , choices:['1.0','1.1','1.2'], description: '')
+    boolianparam(name:'execute-test-stage',defaultvalue: true,description: '')
 }
 stages{
 stage('init'){
