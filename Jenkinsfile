@@ -27,6 +27,4 @@ stage('build image '){
         }
     }
 }
-
-
 }
