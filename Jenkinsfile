@@ -29,7 +29,7 @@ stage('test'){
     steps{
         script{
             gv.testApp()
-             echo "server numder is ${ServerNum}"
+             echo "server numder is ${env.ServerNum}"
            
         }
     }
