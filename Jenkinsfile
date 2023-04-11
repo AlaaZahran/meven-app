@@ -3,7 +3,7 @@ pipeline{
 agent {label 'agent2'}
 parameters{
     choice(name:'Version' , choices:['1.0','1.1','1.2'], description: '')
-    booleanParam(name:'execute-test-stage',defaultValue: true,description: '')
+    booleanParam(name:'executeTest',defaultValue: true,description: '')
 }
 stages{
 stage('init'){
@@ -23,7 +23,7 @@ stage('build'){
 stage('test'){
     when {
         expression{
-            params.execute-test-stage
+            params.executeTest
         }
     }
     steps{
