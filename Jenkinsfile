@@ -36,7 +36,7 @@ stage('test'){
 stage('deploy'){
     steps{
         script{
-            env.ServerNum= message:"what is sever num ?" ,ok :"done" , parameters: [choice(name : "One" , choices :["1","2","3"] , description :'' )]
+            env.ServerNum= input message:"what is sever num ?" ,ok :"done" , parameters: [choice(name: "One" , choices:["1","2","3"] , description:'' )]
             gv.deployApp()
             echo "env is ${ENV}"
             echo "server numder is ${ServerNum}"
