@@ -18,8 +18,8 @@ stage('build image '){
             echo ' building docker image .....'
            withCredentials([usernamePassword(credentialsId: 'dockerhub' , usernameVariable:'UESERNAME' , passwordVariable:'PASS' )]){
              sh 'docker build . -t alaa0ali/mavnapp:1.2'
-               echo "username is ${USERNAME} "
-               sh "docker login -u ${USERNAME} -p ${PASS}" 
+             echo "username is $USERNAME "
+             sh "docker login -u $USERNAME -p $PASS" 
              sh 'docker push alaa0ali/mavnapp:1.2'
            } 
         }
