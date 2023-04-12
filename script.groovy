@@ -10,5 +10,5 @@ def buildPushImage(){
      sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin" 
      echo "push docker image to dockerhub"
      sh 'docker push alaa0ali/mavnapp:1.2'
-}
+     }}
 return this
