@@ -21,10 +21,12 @@ stage('build jar'){
         }
     }
 }
-stage('build image '){
+stage('build and push docker image '){
     steps{
         script{
-            buildPushImage "alaa0ali/mavnapp:3.0"
+            buildDockerImage "alaa0ali/mavnapp:3.0"
+            dockerLogin()
+            pushDockerImage "alaa0ali/mavnapp:3.0"
            } 
         }
     }
