@@ -24,7 +24,7 @@ stage('build jar'){
 stage('build image '){
     steps{
         script{
-            buildPushImage()
+            buildPushImage "alaa0ali/mavnapp:3.0"
            } 
         }
     }
