@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-@Libaray('jenkins-shared-library')
+@Library('jenkins-shared-library')
 def gv
 pipeline{
 agent {label 'docker'}
