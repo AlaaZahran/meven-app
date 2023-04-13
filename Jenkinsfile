@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+@Libaray('jenkins-shared-library')
 def gv
 pipeline{
 agent {label 'docker'}
@@ -15,16 +17,23 @@ stage("init"){
 stage('build jar'){
     steps{
          script{
-           gv.buildJar()
+           buildJar()
         }
     }
 }
 stage('build image '){
     steps{
         script{
-            gv.buildPushImage()
+            buildPushImage()
            } 
         }
     }
+stage('deploy '){
+    steps{
+        script{
+            gv.deployAPP()
+           } 
+        }
+    }    
 }
 }
