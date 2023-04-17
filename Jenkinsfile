@@ -12,8 +12,7 @@ stage("increment version"){
     steps{
         script{
           echo 'increment version ...'
-          sh 'mvn build-helper:parse-version versions:set \
-          -DnewVersion=\\\${parasedVersion.majorVersion}.\\\${parasedVersion.minorVersion}.\\\${parasedVersion.nextIncrementalVersion} versions:commit'
+          sh "mvn build-helper:parse-version versions:set -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion} versions:commit"
           def matcher=readFile('pom.xml')=~ '<version>(.+)</version>'
           def version=matcher[0][1]
           echo "version is $version"
