@@ -33,15 +33,16 @@ stage('build jar'){
     steps{
          script{
            buildJar()
+           
         }
     }
 }
 stage('build and push docker image '){
     steps{
         script{
-            buildDockerImage "alaa0ali/mavnapp:3.0"
+            buildDockerImage "alaa0ali/mavnapp:${IMAGE_NAME}"
             dockerLogin()
-            pushDockerImage "alaa0ali/mavnapp:3.0"
+            pushDockerImage "alaa0ali/mavnapp:${IMAGE_NAME}"
            } 
         }
     }
